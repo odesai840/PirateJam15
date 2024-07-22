@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,12 +12,18 @@ public class SimpleAI : MonoBehaviour
     public float sightRange;
     public float attackRange;
     public float speed;
+    public float patrolRadius;
+
+    float speedDampener; // speed is divided by this while the enemy patrols
+
+    bool walkPointSet = false;
+    Vector2 walkPoint;
 
     private Vector2 moveDirection;
     Rigidbody2D rb;
 
     //Other Variables
-    bool playerInRange;
+    //bool playerInRange;
     float playerDistance;
     Vector2 enemyPos;
     Vector2 playerPos;
@@ -27,43 +34,66 @@ public class SimpleAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        SetMoveDirection();
     }
 
-    
+
     void Update()
     {
         playerPos = Player.transform.position;
         enemyPos = transform.position;
 
-        moveDirection = new Vector2(playerPos.x - enemyPos.x, playerPos.y - enemyPos.y).normalized;
+        SetMoveDirection();
 
-        CheckPlayerPosition();
+        rb.velocity = new Vector2(moveDirection.x * speed/speedDampener, moveDirection.y * speed/speedDampener); // move player
 
-        if (playerInRange)
+    }
+
+
+
+    private void SetMoveDirection()
+    {
+        if (Vector2.Distance(playerPos, enemyPos) < sightRange)
         {
-            if (playerDistance > attackRange)
-            {
-                ChasePlayer();
-            }
-            else {
-                rb.velocity = new Vector2(moveDirection.x * 0, moveDirection.y * 0);
-            }
-
+            speedDampener = 1;
+            walkPointSet = false;
             
-        } 
-    }
+            playerDistance = Vector2.Distance(playerPos, enemyPos); 
 
-    void ChasePlayer()
-    {
-        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
-    }
-
-    void CheckPlayerPosition()
-    {
-        if (Vector2.Distance(playerPos, enemyPos) < sightRange) 
-        { 
-            playerInRange = true;
-            playerDistance = Vector2.Distance(playerPos, enemyPos);
+            moveDirection = new Vector2(playerPos.x - enemyPos.x, playerPos.y - enemyPos.y).normalized; 
         }
+        else
+        {
+            speedDampener = 2;
+
+            if (Vector2.Distance(enemyPos, walkPoint) <= sightRange)
+            {
+                walkPointSet = false;
+            }
+            if (!walkPointSet) SearchWalkPoint();
+
+            if (walkPointSet) 
+            {
+                moveDirection = new Vector2(walkPoint.x - enemyPos.x,walkPoint.y - enemyPos.y).normalized;
+            }
+            
+
+
+
+            //float moveX = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
+            //float moveY = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
+            //moveDirection = new Vector2(moveX - enemyPos.x, moveY - enemyPos.y).normalized;
+        }
+    }
+
+    private void SearchWalkPoint()
+    {
+        float moveX = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
+        float moveY = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
+
+        walkPoint = new Vector2(moveX, moveY);
+
+        walkPointSet = true;
     }
 }
