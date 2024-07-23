@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,7 +20,7 @@ public class SimpleAI : MonoBehaviour
     bool walkPointSet = false;
     Vector2 walkPoint;
 
-    private Vector2 moveDirection;
+    Vector2 moveDirection;
     Rigidbody2D rb;
 
     //Other Variables
@@ -29,13 +30,14 @@ public class SimpleAI : MonoBehaviour
     Vector2 playerPos;
 
     public GameObject Player;
+    public GameObject attackObject;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        SetMoveDirection();
+        //SetMoveDirection();
     }
 
 
@@ -44,13 +46,16 @@ public class SimpleAI : MonoBehaviour
         playerPos = Player.transform.position;
         enemyPos = transform.position;
 
+        
         SetMoveDirection();
+
+        CheckAttack();
 
         rb.velocity = new Vector2(moveDirection.x * speed/speedDampener, moveDirection.y * speed/speedDampener); // move player
 
     }
 
-
+    
 
     private void SetMoveDirection()
     {
@@ -71,19 +76,14 @@ public class SimpleAI : MonoBehaviour
             {
                 walkPointSet = false;
             }
+
             if (!walkPointSet) SearchWalkPoint();
 
             if (walkPointSet) 
             {
-                moveDirection = new Vector2(walkPoint.x - enemyPos.x,walkPoint.y - enemyPos.y).normalized;
+                moveDirection = new Vector2(walkPoint.x - enemyPos.x, walkPoint.y - enemyPos.y).normalized;
             }
             
-
-
-
-            //float moveX = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
-            //float moveY = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
-            //moveDirection = new Vector2(moveX - enemyPos.x, moveY - enemyPos.y).normalized;
         }
     }
 
@@ -92,8 +92,22 @@ public class SimpleAI : MonoBehaviour
         float moveX = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
         float moveY = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
 
-        walkPoint = new Vector2(moveX, moveY);
+        walkPoint = new Vector2(moveX + enemyPos.x, moveY + enemyPos.y);
 
         walkPointSet = true;
+    }
+
+    private void CheckAttack()
+    {
+        if (Vector2.Distance(enemyPos, playerPos) <= attackRange)
+        {
+            Vector2 playerDirection = new Vector2(moveDirection.x, moveDirection.y);
+
+            float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
+            Quaternion rotationToPlayer = Quaternion.Euler(0, 0, angle);
+
+            playerDistance = Vector2.Distance(playerPos, enemyPos);
+            Instantiate(attackObject, new Vector2(enemyPos.x + playerDistance, enemyPos.y + playerDistance), rotationToPlayer);
+        }
     }
 }
