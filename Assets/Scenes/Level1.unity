@@ -3073,9 +3073,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 204053959}
     - target: {fileID: 1967298095294462028, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967298095294462028, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
       propertyPath: attackObject
       value: 
       objectReference: {fileID: 4118729696875948971, guid: 9d6532100b650394483101ad47fde386, type: 3}
+    - target: {fileID: 1967298095294462028, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
+      propertyPath: attackDelayInFrames
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 5708051211375957831, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.3
@@ -5695,9 +5703,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 204053959}
     - target: {fileID: 1967298095294462028, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967298095294462028, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
       propertyPath: attackObject
       value: 
       objectReference: {fileID: 4118729696875948971, guid: 9d6532100b650394483101ad47fde386, type: 3}
+    - target: {fileID: 1967298095294462028, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
+      propertyPath: attackDelayInFrames
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 5708051211375957831, guid: 4c8327a338a6f4443a73182d114c0892, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9159358

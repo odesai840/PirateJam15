@@ -14,6 +14,8 @@ public class SimpleAI : MonoBehaviour
     public float attackRange;
     public float speed;
     public float patrolRadius;
+    public float attackDelayInFrames;
+    float i;
 
     float speedDampener; // speed is divided by this while the enemy patrols
 
@@ -29,15 +31,20 @@ public class SimpleAI : MonoBehaviour
     Vector2 enemyPos;
     Vector2 playerPos;
 
+
+
     public GameObject Player;
     public GameObject attackObject;
+
+    
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        //SetMoveDirection();
+        i = attackDelayInFrames;
+        
     }
 
 
@@ -46,12 +53,29 @@ public class SimpleAI : MonoBehaviour
         playerPos = Player.transform.position;
         enemyPos = transform.position;
 
-        
+
         SetMoveDirection();
 
-        CheckAttack();
+        i--;
 
-        rb.velocity = new Vector2(moveDirection.x * speed/speedDampener, moveDirection.y * speed/speedDampener); // move player
+        if (i == 0)
+        {
+            Debug.Log("Attack");
+            CheckAttack();
+            i = attackDelayInFrames;
+        }
+        
+
+
+
+        if (playerDistance > attackRange)
+        {
+            rb.velocity = new Vector2(moveDirection.x * speed / speedDampener, moveDirection.y * speed / speedDampener);
+        }
+        else 
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
 
     }
 
@@ -67,6 +91,8 @@ public class SimpleAI : MonoBehaviour
             playerDistance = Vector2.Distance(playerPos, enemyPos); 
 
             moveDirection = new Vector2(playerPos.x - enemyPos.x, playerPos.y - enemyPos.y).normalized; 
+
+            
         }
         else
         {
@@ -99,15 +125,17 @@ public class SimpleAI : MonoBehaviour
 
     private void CheckAttack()
     {
+        
         if (Vector2.Distance(enemyPos, playerPos) <= attackRange)
         {
-            Vector2 playerDirection = new Vector2(moveDirection.x, moveDirection.y);
+            Vector2 playerDirection = (playerPos - enemyPos).normalized;
+            Vector2 spawnPos = enemyPos + playerDirection * attackRange;
 
             float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
             Quaternion rotationToPlayer = Quaternion.Euler(0, 0, angle);
 
             playerDistance = Vector2.Distance(playerPos, enemyPos);
-            Instantiate(attackObject, new Vector2(enemyPos.x + playerDistance, enemyPos.y + playerDistance), rotationToPlayer);
+            Instantiate(attackObject, spawnPos, rotationToPlayer);
         }
     }
 }
