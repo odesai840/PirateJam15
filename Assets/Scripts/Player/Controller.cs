@@ -54,7 +54,6 @@ public class Controller : MonoBehaviour
     void ProcessInputs()
     {
         movement = playerControls.Movement.Move.ReadValue<Vector2>();
-        Debug.Log(movement);
     }
 
     void Move()
