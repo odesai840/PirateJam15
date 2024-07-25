@@ -31,12 +31,7 @@ public class SimpleAI : MonoBehaviour
     Vector2 enemyPos;
     Vector2 playerPos;
 
-
-
     public GameObject Player;
-    public GameObject attackObject;
-
-    
 
 
     void Start()
@@ -55,18 +50,6 @@ public class SimpleAI : MonoBehaviour
 
 
         SetMoveDirection();
-
-        i--;
-
-        if (i == 0)
-        {
-            Debug.Log("Attack");
-            CheckAttack();
-            i = attackDelayInFrames;
-        }
-        
-
-
 
         if (playerDistance > attackRange)
         {
@@ -123,6 +106,7 @@ public class SimpleAI : MonoBehaviour
         walkPointSet = true;
     }
 
+    /*
     private void CheckAttack()
     {
         
@@ -138,4 +122,5 @@ public class SimpleAI : MonoBehaviour
             Instantiate(attackObject, spawnPos, rotationToPlayer);
         }
     }
+    */
 }

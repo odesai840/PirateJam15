@@ -20,6 +20,18 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
         FinishShot,
     }
 
+    Rigidbody2D rb;
+    SimpleAI simpleAI;
+    float attackRange;
+    float playerDistance;
+
+    bool canAttack;
+    
+    public GameObject player;
+
+    Vector2 enemyPos;
+    Vector2 playerPos;
+
     [Serializable]
     public class ShotInfo
     {
@@ -75,20 +87,47 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        simpleAI = GetComponent<SimpleAI>();
+
+        attackRange = simpleAI.attackRange;
+
         if (m_startOnAwake)
         {
             StartShotRoutine(m_startOnAwakeDelay);
         }
     }
 
+    void Update() 
+    {
+        playerPos = player.transform.position;
+        enemyPos = transform.position;
+        playerDistance = Vector2.Distance(playerPos, enemyPos);
+
+
+        if (canAttack)
+        {
+            StartShotRoutine();
+        }
+        
+        if (playerDistance > attackRange)
+        {
+            m_shooting = false;
+            canAttack = true;
+            m_loop = false;
+            m_atRandom = false;
+        }
+    }
+
     private void OnEnable()
     {
         UbhShotManager.instance.AddShot(this);
-
+        
         if (m_startOnEnable)
         {
             StartShotRoutine(m_startOnEnableDelay);
         }
+        
     }
 
     private void OnDisable()
@@ -201,64 +240,77 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
     /// </summary>
     public void StartShotRoutine(float startDelay = 0f)
     {
-        if (m_shotList == null || m_shotList.Count <= 0)
-        {
-            UbhDebugLog.LogWarning(name + " Cannot shot because ShotList is null or empty.", this);
-            return;
-        }
+        
 
-        bool enableShot = false;
-        for (int i = 0; i < m_shotList.Count; i++)
+        if (playerDistance <= attackRange)
         {
-            if (m_shotList[i].m_shotObj != null)
+            canAttack = false;
+            m_loop = true;
+            m_atRandom = true;
+            if (m_shotList == null || m_shotList.Count <= 0)
             {
-                enableShot = true;
-                break;
+                UbhDebugLog.LogWarning(name + " Cannot shot because ShotList is null or empty.", this);
+                return;
             }
-        }
-        if (enableShot == false)
-        {
-            UbhDebugLog.LogWarning(name + " Cannot shot because all ShotObj of ShotList is not set.", this);
-            return;
-        }
 
-        if (m_loop)
-        {
-            bool enableDelay = false;
+            bool enableShot = false;
             for (int i = 0; i < m_shotList.Count; i++)
             {
-                if (0f < m_shotList[i].m_afterDelay)
+                if (m_shotList[i].m_shotObj != null)
                 {
-                    enableDelay = true;
+                    enableShot = true;
                     break;
                 }
             }
-            if (enableDelay == false)
+            if (enableShot == false)
             {
-                UbhDebugLog.LogWarning(name + " Cannot shot because loop is true and all AfterDelay of ShotList is zero.", this);
+                UbhDebugLog.LogWarning(name + " Cannot shot because all ShotObj of ShotList is not set.", this);
                 return;
             }
-        }
 
-        if (m_shooting)
-        {
-            UbhDebugLog.LogWarning(name + " Already shooting.", this);
-            return;
-        }
+            if (m_loop)
+            {
+                bool enableDelay = false;
+                for (int i = 0; i < m_shotList.Count; i++)
+                {
+                    if (0f < m_shotList[i].m_afterDelay)
+                    {
+                        enableDelay = true;
+                        break;
+                    }
+                }
+                if (enableDelay == false)
+                {
+                    UbhDebugLog.LogWarning(name + " Cannot shot because loop is true and all AfterDelay of ShotList is zero.", this);
+                    return;
+                }
+            }
 
-        m_shooting = true;
-        m_delayTimer = startDelay;
-        m_updateStep = m_delayTimer > 0f ? UpdateStep.StartDelay : UpdateStep.StartShot;
-        if (m_atRandom)
-        {
-            m_randomShotList.Clear();
-            m_randomShotList.AddRange(m_shotList);
-            m_nowIndex = UnityEngine.Random.Range(0, m_randomShotList.Count);
+            if (m_shooting)
+            {
+                UbhDebugLog.LogWarning(name + " Already shooting.", this);
+                return;
+            }
+
+            m_shooting = true;
+            m_delayTimer = startDelay;
+            m_updateStep = m_delayTimer > 0f ? UpdateStep.StartDelay : UpdateStep.StartShot;
+            if (m_atRandom)
+            {
+                m_randomShotList.Clear();
+                m_randomShotList.AddRange(m_shotList);
+                m_nowIndex = UnityEngine.Random.Range(0, m_randomShotList.Count);
+            }
+            else
+            {
+                m_nowIndex = 0;
+            }
         }
-        else
-        {
-            m_nowIndex = 0;
-        }
+        
+        
+        
+            
+
     }
 
     /// <summary>
