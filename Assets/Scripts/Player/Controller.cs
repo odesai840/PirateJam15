@@ -14,6 +14,7 @@ public class Controller : MonoBehaviour
     Rigidbody2D rb;
     private float startingMoveSpeed;
 
+
     private bool isDashing = false;
 
     private void Awake()
@@ -42,7 +43,7 @@ public class Controller : MonoBehaviour
     {
         //process inputs
         ProcessInputs();
-        
+
     }
 
     void FixedUpdate()
