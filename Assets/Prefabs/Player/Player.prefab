@@ -633,7 +633,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   dashSpeed: 4
-  weaponList: []
+  activeWeaponIndicator: {fileID: 532989878507011467}
+  weaponArray:
+  - {fileID: 11400000, guid: e2ed20991e1e7524fb84ef608d029ae4, type: 2}
+  - {fileID: 11400000, guid: 5610e75cb7119354c9bb8a25476e8e67, type: 2}
+  - {fileID: 11400000, guid: a678e53f5580c1f4cbb6402313a23736, type: 2}
 --- !u!50 &4429280693966462923
 Rigidbody2D:
   serializedVersion: 4

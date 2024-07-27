@@ -4257,42 +4257,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: HUDIndicator
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponArray.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: e2ed20991e1e7524fb84ef608d029ae4, type: 2}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5610e75cb7119354c9bb8a25476e8e67, type: 2}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: a678e53f5580c1f4cbb6402313a23736, type: 2}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponArray.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: e2ed20991e1e7524fb84ef608d029ae4, type: 2}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponArray.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5610e75cb7119354c9bb8a25476e8e67, type: 2}
-    - target: {fileID: 1362663085153648842, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
-      propertyPath: weaponArray.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: a678e53f5580c1f4cbb6402313a23736, type: 2}
     - target: {fileID: 2588398966673116095, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

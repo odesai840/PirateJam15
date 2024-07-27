@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashSpeed = 4f;
+    [SerializeField] private Image activeWeaponIndicator;
     [SerializeField] private PlayerWeapon[] weaponArray;
 
     PlayerControls playerControls;
@@ -110,6 +111,6 @@ public class Controller : MonoBehaviour
     private void EquipWeapon(int index)
     {
         weaponIndex = index;
-        Debug.Log(weaponIndex);
+        activeWeaponIndicator.sprite = weaponArray[weaponIndex].HUDSprite;
     }
 }
