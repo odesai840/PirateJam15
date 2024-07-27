@@ -24,8 +24,10 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
     SimpleAI simpleAI;
     float attackRange;
     float playerDistance;
+    float timer;
+    float seconds;
 
-    bool canAttack;
+    bool canStartRoutine;
     
     public GameObject player;
 
@@ -104,19 +106,35 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
         enemyPos = transform.position;
         playerDistance = Vector2.Distance(playerPos, enemyPos);
 
+        timer += Time.deltaTime;
+        seconds = (int)timer % 60;
 
-        if (canAttack)
+        if (canStartRoutine)
         {
             StartShotRoutine();
+            seconds = 0;
+            timer = 0;
         }
         
+
+
         if (playerDistance > attackRange)
         {
+            if (seconds >= 4) 
+            {
+                canStartRoutine = true;
+            }
+
             m_shooting = false;
-            canAttack = true;
             m_loop = false;
             m_atRandom = false;
+
         }
+    }
+
+    private void ShotRoutineRestartTimer()
+    {
+        
     }
 
     private void OnEnable()
@@ -241,10 +259,9 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
     public void StartShotRoutine(float startDelay = 0f)
     {
         
-
         if (playerDistance <= attackRange)
         {
-            canAttack = false;
+            canStartRoutine = false;
             m_loop = true;
             m_atRandom = true;
             if (m_shotList == null || m_shotList.Count <= 0)

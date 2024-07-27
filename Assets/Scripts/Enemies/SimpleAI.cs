@@ -14,7 +14,6 @@ public class SimpleAI : MonoBehaviour
     public float attackRange;
     public float speed;
     public float patrolRadius;
-    public float attackDelayInFrames;
     float i;
 
     float speedDampener; // speed is divided by this while the enemy patrols
@@ -37,8 +36,6 @@ public class SimpleAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        i = attackDelayInFrames;
         
     }
 
