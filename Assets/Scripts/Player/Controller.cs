@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
 
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashSpeed = 4f;
+    [SerializeField] private PlayerWeapon[] weaponArray;
 
     PlayerControls playerControls;
     private Vector2 movement;
     Rigidbody2D rb;
     private float startingMoveSpeed;
-
-
+    private int weaponIndex;
     private bool isDashing = false;
 
     private void Awake()
@@ -27,6 +29,7 @@ public class Controller : MonoBehaviour
     {
         playerControls.Combat.Dash.performed += _ => Dash();
         startingMoveSpeed = moveSpeed;
+        EquipWeapon(0);
     }
 
     private void OnEnable()
@@ -44,6 +47,28 @@ public class Controller : MonoBehaviour
         //process inputs
         ProcessInputs();
 
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
+        {
+            if (weaponIndex >= weaponArray.Length - 1)
+            {
+                EquipWeapon(0);
+            }
+            else
+            {
+                EquipWeapon(weaponIndex + 1);
+            }
+        }
+        else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
+        {
+            if (weaponIndex <= 0)
+            {
+                EquipWeapon(weaponArray.Length - 1);
+            }
+            else
+            {
+                EquipWeapon(weaponIndex - 1);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -80,5 +105,11 @@ public class Controller : MonoBehaviour
         moveSpeed = startingMoveSpeed;
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
+    }
+
+    private void EquipWeapon(int index)
+    {
+        weaponIndex = index;
+        Debug.Log(weaponIndex);
     }
 }

@@ -109,15 +109,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Strong Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""bcee690b-b8ba-4175-ab02-9111b58c8288"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""3f63d34d-b025-4c73-96fe-3fbd6a781469"",
@@ -145,17 +136,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Basic Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5fee4034-6f4b-42c2-8ce1-04c9a2bc3651"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Strong Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -192,7 +172,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Combat
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
         m_Combat_BasicAttack = m_Combat.FindAction("Basic Attack", throwIfNotFound: true);
-        m_Combat_StrongAttack = m_Combat.FindAction("Strong Attack", throwIfNotFound: true);
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
         m_Combat_Eclipse = m_Combat.FindAction("Eclipse", throwIfNotFound: true);
     }
@@ -303,7 +282,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Combat;
     private List<ICombatActions> m_CombatActionsCallbackInterfaces = new List<ICombatActions>();
     private readonly InputAction m_Combat_BasicAttack;
-    private readonly InputAction m_Combat_StrongAttack;
     private readonly InputAction m_Combat_Dash;
     private readonly InputAction m_Combat_Eclipse;
     public struct CombatActions
@@ -311,7 +289,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public CombatActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @BasicAttack => m_Wrapper.m_Combat_BasicAttack;
-        public InputAction @StrongAttack => m_Wrapper.m_Combat_StrongAttack;
         public InputAction @Dash => m_Wrapper.m_Combat_Dash;
         public InputAction @Eclipse => m_Wrapper.m_Combat_Eclipse;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
@@ -326,9 +303,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @BasicAttack.started += instance.OnBasicAttack;
             @BasicAttack.performed += instance.OnBasicAttack;
             @BasicAttack.canceled += instance.OnBasicAttack;
-            @StrongAttack.started += instance.OnStrongAttack;
-            @StrongAttack.performed += instance.OnStrongAttack;
-            @StrongAttack.canceled += instance.OnStrongAttack;
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
@@ -342,9 +316,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @BasicAttack.started -= instance.OnBasicAttack;
             @BasicAttack.performed -= instance.OnBasicAttack;
             @BasicAttack.canceled -= instance.OnBasicAttack;
-            @StrongAttack.started -= instance.OnStrongAttack;
-            @StrongAttack.performed -= instance.OnStrongAttack;
-            @StrongAttack.canceled -= instance.OnStrongAttack;
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
@@ -375,7 +346,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface ICombatActions
     {
         void OnBasicAttack(InputAction.CallbackContext context);
-        void OnStrongAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnEclipse(InputAction.CallbackContext context);
     }
