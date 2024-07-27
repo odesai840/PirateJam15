@@ -113,4 +113,14 @@ public class Controller : MonoBehaviour
         weaponIndex = index;
         activeWeaponIndicator.sprite = weaponArray[weaponIndex].HUDSprite;
     }
+
+    public PlayerWeapon GetEquippedWeapon()
+    {
+        return weaponArray[weaponIndex];
+    }
+
+    public void SetEquippedWeapon(int index)
+    {
+        EquipWeapon(index);
+    }
 }
