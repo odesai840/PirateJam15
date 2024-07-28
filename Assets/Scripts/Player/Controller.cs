@@ -11,7 +11,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private Image activeWeaponIndicator;
-    [SerializeField] private PlayerWeapon[] weaponArray;
+    [SerializeField] private List<PlayerWeapon> weaponList;
 
     PlayerControls playerControls;
     private Vector2 movement;
@@ -50,7 +50,7 @@ public class Controller : MonoBehaviour
 
         if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
         {
-            if (weaponIndex >= weaponArray.Length - 1)
+            if (weaponIndex >= weaponList.Count - 1)
             {
                 EquipWeapon(0);
             }
@@ -63,7 +63,7 @@ public class Controller : MonoBehaviour
         {
             if (weaponIndex <= 0)
             {
-                EquipWeapon(weaponArray.Length - 1);
+                EquipWeapon(weaponList.Count - 1);
             }
             else
             {
@@ -111,12 +111,12 @@ public class Controller : MonoBehaviour
     private void EquipWeapon(int index)
     {
         weaponIndex = index;
-        activeWeaponIndicator.sprite = weaponArray[weaponIndex].HUDSprite;
+        activeWeaponIndicator.sprite = weaponList[weaponIndex].HUDSprite;
     }
 
     public PlayerWeapon GetEquippedWeapon()
     {
-        return weaponArray[weaponIndex];
+        return weaponList[weaponIndex];
     }
 
     public void SetEquippedWeapon(int index)

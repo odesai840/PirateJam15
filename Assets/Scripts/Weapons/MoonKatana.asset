@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2a7804e31e05e4195aef826b144df8, type: 3}
   m_Name: MoonKatana
   m_EditorClassIdentifier: 
+  weaponName: Moon Katana
   HUDSprite: {fileID: 21300000, guid: 39dd77758527a034bbdbb3d6d5171ada, type: 3}
   projectilePrefab: {fileID: 7673601838352334493, guid: c74c2aa94119a9e438fff5ec59a727a9, type: 3}
   weaponDamage: 33
   weaponRange: 3
+  projectileSpeed: 15
   attackCooldown: 0.2
   armorPenetration: 0
+  canPierceEnemies: 1
   requiresEclipse: 0

@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2a7804e31e05e4195aef826b144df8, type: 3}
   m_Name: EclipseBow
   m_EditorClassIdentifier: 
+  weaponName: Eclipse Bow
   HUDSprite: {fileID: 21300000, guid: 3799ab200d9623b448b93428b00fe650, type: 3}
   projectilePrefab: {fileID: 3331563888087123315, guid: 1d488cad1146c3c4cbf57d61ac9dce78, type: 3}
   weaponDamage: 50
   weaponRange: 10
+  projectileSpeed: 10
   attackCooldown: 0.5
   armorPenetration: 1
+  canPierceEnemies: 1
   requiresEclipse: 1

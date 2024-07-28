@@ -35,17 +35,46 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         weapon = playerController.GetEquippedWeapon();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+        if (attackButtonDown && !isAttacking)
+        {
+            AttackCooldown();
+            if (weapon.weaponName == "Eclipse Bow")
+            {
+                SpawnProjectilesInAllDirections();
+            }
+            else
+            {
+                SpawnProjectile();
+            }
+        }
     }
 
     private void StartAttacking()
     {
         attackButtonDown = true;
-        SpawnProjectile();
     }
 
     private void StopAttacking()
     {
         attackButtonDown = false;
+    }
+
+    private IEnumerator TimeBetweenAttacksRoutine()
+    {
+        yield return new WaitForSeconds(weapon.attackCooldown);
+        isAttacking = false;
+    }
+
+    private void AttackCooldown()
+    {
+        isAttacking = true;
+        StopAllCoroutines();
+        StartCoroutine(TimeBetweenAttacksRoutine());
     }
 
     private void SpawnProjectile()
@@ -55,6 +84,27 @@ public class WeaponManager : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         GameObject projectile = Instantiate(weapon.projectilePrefab, player.transform.position, rotation);
-        Debug.DrawLine(projectile.transform.position, projectile.transform.position + projectile.transform.right * 10, Color.red, Mathf.Infinity);
+        projectile.GetComponent<PlayerProjectile>().projectileRange = weapon.weaponRange;
+        projectile.GetComponent<PlayerProjectile>().projectileSpeed = weapon.projectileSpeed;
+        Debug.DrawLine(projectile.transform.position, projectile.transform.position + projectile.transform.right * 10, Color.red, 2f);
+    }
+
+    private void SpawnProjectilesInAllDirections()
+    {
+        int numberOfProjectiles = 8; // Adjust this number based on how many projectiles you want to spawn
+        float angleStep = 360f / numberOfProjectiles;
+
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            float angle = i * angleStep;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+            Vector3 direction = rotation * Vector3.right;
+
+            GameObject projectile = Instantiate(weapon.projectilePrefab, player.transform.position, rotation);
+            projectile.GetComponent<PlayerProjectile>().projectileRange = weapon.weaponRange;
+            projectile.GetComponent<PlayerProjectile>().projectileSpeed = weapon.projectileSpeed;
+
+            Debug.DrawLine(projectile.transform.position, projectile.transform.position + direction * 10, Color.red, 2f);
+        }
     }
 }

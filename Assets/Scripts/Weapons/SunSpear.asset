@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2a7804e31e05e4195aef826b144df8, type: 3}
   m_Name: SunSpear
   m_EditorClassIdentifier: 
+  weaponName: Sun Spear
   HUDSprite: {fileID: 21300000, guid: 93c1fe98e17467b4287e7385297c2946, type: 3}
   projectilePrefab: {fileID: 686948731496436457, guid: c7df3772f8e873542b34211964698fe4, type: 3}
   weaponDamage: 33
   weaponRange: 4
+  projectileSpeed: 5
   attackCooldown: 1
   armorPenetration: 1
   requiresEclipse: 0
