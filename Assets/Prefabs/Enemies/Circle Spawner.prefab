@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2838356153301534239}
   - component: {fileID: 7327909210624814110}
   - component: {fileID: 2067057130396312054}
+  - component: {fileID: 6485081096237408748}
   m_Layer: 0
   m_Name: Circle Spawner
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f0f29fa90c15e4ca1c2e77ce62f18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 6677023880136579158, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
   m_axisMove: 0
   m_inheritAngle: 0
   m_startOnAwake: 0
@@ -79,7 +80,7 @@ MonoBehaviour:
   attackRange: 999
   speed: 0
   patrolRadius: 0
-  Player: {fileID: 0}
+  Player: {fileID: 6677023880136579158, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
 --- !u!50 &2067057130396312054
 Rigidbody2D:
   serializedVersion: 4
@@ -107,6 +108,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6485081096237408748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983868647959316888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8daf1c7053992b49be9494c7768e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4182150521792557961
 PrefabInstance:
   m_ObjectHideFlags: 0

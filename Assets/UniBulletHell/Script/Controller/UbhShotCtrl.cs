@@ -111,30 +111,23 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
 
         if (canStartRoutine)
         {
-            StartShotRoutine();
-            seconds = 0;
-            timer = 0;
+            if (seconds >= 2)
+            {
+                StartShotRoutine();
+                seconds = 0;
+                timer = 0;
+            }
         }
         
 
-
         if (playerDistance > attackRange)
         {
-            if (seconds >= 4) 
-            {
-                canStartRoutine = true;
-            }
-
+            canStartRoutine = true;
             m_shooting = false;
             m_loop = false;
             m_atRandom = false;
 
         }
-    }
-
-    private void ShotRoutineRestartTimer()
-    {
-        
     }
 
     private void OnEnable()
