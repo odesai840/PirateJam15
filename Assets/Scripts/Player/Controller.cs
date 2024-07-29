@@ -140,9 +140,16 @@ public class Controller : MonoBehaviour
 
     private void EquipPreviousWeapon()
     {
-        if (weaponIndex <= 0)
+        if (weaponIndex == 0)
         {
-            EquipWeapon(weaponList.Count - 1);
+            if (isEclipseActive)
+            {
+                EquipWeapon(2);
+            }
+            else
+            {
+                EquipWeapon(1);
+            }
         }
         else
         {
