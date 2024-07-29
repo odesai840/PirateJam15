@@ -13,13 +13,13 @@ public class PlayerEclipse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        eclipse = maxEclipse;
+        eclipse = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        eclipse = Mathf.Clamp(eclipse, 0, maxEclipse);
+        eclipse = Mathf.Clamp(eclipse, 0f, maxEclipse);
         if (Input.GetKeyDown(KeyCode.G))
         {
             DrainEclipse(Random.Range(5, 10));
@@ -33,7 +33,7 @@ public class PlayerEclipse : MonoBehaviour
 
     public void UpdateHealthUI()
     {
-        eclipseBar.value = (eclipse / maxEclipse) * 100;
+        eclipseBar.value = (eclipse / maxEclipse) * 100f;
     }
 
     public void DrainEclipse(float amount)
@@ -44,5 +44,15 @@ public class PlayerEclipse : MonoBehaviour
     public void GainEclipse(float amount)
     {
         eclipse += amount;
+    }
+
+    public float GetCurrentEclipse()
+    {
+        return eclipse;
+    }
+
+    public void SetCurrentEclipse(float amount)
+    {
+        eclipse = amount;
     }
 }
