@@ -12,6 +12,7 @@ public class WeaponManager : MonoBehaviour
 
     private bool attackButtonDown = false;
     private bool isAttacking = false;
+    private bool autoFire = false;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class WeaponManager : MonoBehaviour
     {
         playerControls.Combat.BasicAttack.started += _ => StartAttacking();
         playerControls.Combat.BasicAttack.canceled += _ => StopAttacking();
+        playerControls.Combat.AutoFire.performed += _ => ToggleAutoFire();
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Shoot()
     {
-        if (attackButtonDown && !isAttacking)
+        if ((autoFire || attackButtonDown) && !isAttacking)
         {
             AttackCooldown();
             if (weapon.weaponName == "Eclipse Bow")
@@ -62,6 +64,11 @@ public class WeaponManager : MonoBehaviour
     private void StopAttacking()
     {
         attackButtonDown = false;
+    }
+
+    private void ToggleAutoFire()
+    {
+        autoFire = !autoFire;
     }
 
     private IEnumerator TimeBetweenAttacksRoutine()

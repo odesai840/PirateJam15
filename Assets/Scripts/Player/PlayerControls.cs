@@ -125,6 +125,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Auto Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""3327a622-2242-4b02-b726-277eea75514f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -160,6 +169,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Eclipse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6df5963-fa97-454d-8900-180ba6dc0e08"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Auto Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -174,6 +194,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Combat_BasicAttack = m_Combat.FindAction("Basic Attack", throwIfNotFound: true);
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
         m_Combat_Eclipse = m_Combat.FindAction("Eclipse", throwIfNotFound: true);
+        m_Combat_AutoFire = m_Combat.FindAction("Auto Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +305,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Combat_BasicAttack;
     private readonly InputAction m_Combat_Dash;
     private readonly InputAction m_Combat_Eclipse;
+    private readonly InputAction m_Combat_AutoFire;
     public struct CombatActions
     {
         private @PlayerControls m_Wrapper;
@@ -291,6 +313,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @BasicAttack => m_Wrapper.m_Combat_BasicAttack;
         public InputAction @Dash => m_Wrapper.m_Combat_Dash;
         public InputAction @Eclipse => m_Wrapper.m_Combat_Eclipse;
+        public InputAction @AutoFire => m_Wrapper.m_Combat_AutoFire;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -309,6 +332,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Eclipse.started += instance.OnEclipse;
             @Eclipse.performed += instance.OnEclipse;
             @Eclipse.canceled += instance.OnEclipse;
+            @AutoFire.started += instance.OnAutoFire;
+            @AutoFire.performed += instance.OnAutoFire;
+            @AutoFire.canceled += instance.OnAutoFire;
         }
 
         private void UnregisterCallbacks(ICombatActions instance)
@@ -322,6 +348,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Eclipse.started -= instance.OnEclipse;
             @Eclipse.performed -= instance.OnEclipse;
             @Eclipse.canceled -= instance.OnEclipse;
+            @AutoFire.started -= instance.OnAutoFire;
+            @AutoFire.performed -= instance.OnAutoFire;
+            @AutoFire.canceled -= instance.OnAutoFire;
         }
 
         public void RemoveCallbacks(ICombatActions instance)
@@ -348,5 +377,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnBasicAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnEclipse(InputAction.CallbackContext context);
+        void OnAutoFire(InputAction.CallbackContext context);
     }
 }
