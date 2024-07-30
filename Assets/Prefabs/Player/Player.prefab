@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 266022430547089338}
   - component: {fileID: 2030684976115900950}
   - component: {fileID: 6345831637154298332}
-  - component: {fileID: 2457692101335124234}
+  - component: {fileID: 6384333503497389373}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -711,8 +711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6677023880136579158}
---- !u!61 &2457692101335124234
-BoxCollider2D:
+--- !u!70 &6384333503497389373
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -743,19 +743,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.034467667, y: -0.010490119}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.44689173, y: 0.63821995}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.00268245, y: -0.2680771}
+  m_Size: {x: 0.32367563, y: 0.12261774}
+  m_Direction: 1
 --- !u!1 &7081874890190862486
 GameObject:
   m_ObjectHideFlags: 0

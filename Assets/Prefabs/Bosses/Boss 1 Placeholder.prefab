@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2191739777572225080}
   - component: {fileID: 5204578321370100294}
   - component: {fileID: 5236299367619220261}
-  - component: {fileID: 6894151321727671144}
+  - component: {fileID: 886053700733698674}
   m_Layer: 7
   m_Name: Boss 1 Placeholder
   m_TagString: Enemy
@@ -164,8 +164,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6894151321727671144
-BoxCollider2D:
+--- !u!70 &886053700733698674
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -196,19 +196,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00788784, y: 0.023663044}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.87509596, y: 0.9171648}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.035733644, y: -0.26312765}
+  m_Size: {x: 0.66279423, y: 0.4029128}
+  m_Direction: 1
 --- !u!1001 &2491714677173507943
 PrefabInstance:
   m_ObjectHideFlags: 0
