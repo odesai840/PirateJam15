@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
@@ -11,6 +12,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private Image activeWeaponIndicator;
+    [SerializeField] private PostProcessVolume eclipseFX;
     [SerializeField] private List<PlayerWeapon> weaponList;
     [SerializeField] private float eclipseDuration = 10f;
 
@@ -162,7 +164,8 @@ public class Controller : MonoBehaviour
         if(playerEclipse.GetCurrentEclipse() == 100f)
         {
             isEclipseActive = true;
-            EquipWeapon(2); // Equip the third weapon
+            StartCoroutine(SmoothTransitionEclipseFXWeight(1f, 0.5f));
+            EquipWeapon(2);
             playerEclipse.SetCurrentEclipse(0f);
             StartCoroutine(EclipseRoutine());
         }
@@ -171,8 +174,24 @@ public class Controller : MonoBehaviour
     private IEnumerator EclipseRoutine()
     {
         yield return new WaitForSeconds(eclipseDuration);
-        EquipNextWeapon(); // Automatically equip the next weapon after Eclipse ends
+        EquipNextWeapon();
+        StartCoroutine(SmoothTransitionEclipseFXWeight(0f, 0.5f));
         isEclipseActive = false;
+    }
+
+    private IEnumerator SmoothTransitionEclipseFXWeight(float targetWeight, float duration)
+    {
+        float startWeight = eclipseFX.weight;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            eclipseFX.weight = Mathf.Lerp(startWeight, targetWeight, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        eclipseFX.weight = targetWeight; // Ensure it reaches the target weight at the end
     }
 
     public PlayerWeapon GetEquippedWeapon()

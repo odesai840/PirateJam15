@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1518145123150262879}
   - component: {fileID: 3122288191279961455}
   - component: {fileID: 5599825884156932464}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Vomit enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 136
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
