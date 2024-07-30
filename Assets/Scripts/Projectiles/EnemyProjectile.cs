@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileParent : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
-    Rigidbody2D rb;
-    public float damage;
-    public float lifeSpanInSeconds;
+    public float damage = 10f;
+    public float lifeSpanInSeconds = 3f;
 
     float timer;
 
 
-
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -31,8 +29,13 @@ public class ProjectileParent : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
+        if(other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }
