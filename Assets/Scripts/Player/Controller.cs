@@ -179,4 +179,21 @@ public class Controller : MonoBehaviour
     {
         return weaponList[weaponIndex];
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Stairs"))
+        {
+            moveSpeed /= 1.3f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Stairs"))
+        {
+            moveSpeed = startingMoveSpeed; 
+        }
+    }
 }
