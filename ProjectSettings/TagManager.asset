@@ -4,8 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Stairs
+  - Basic Enemy
+  - Brute Enemy
+  - Flying Enemy
+  - Boss Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - Floor
   - Enemy
   - PostFX
-  - 
+  - Projectile
   - 
   - 
   - 

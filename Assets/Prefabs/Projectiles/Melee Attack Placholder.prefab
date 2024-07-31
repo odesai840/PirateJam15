@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8199859056665117759}
   - component: {fileID: 1037649602472334327}
   - component: {fileID: 397341071677938964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Melee Attack Placholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

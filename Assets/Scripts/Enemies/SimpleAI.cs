@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 public class SimpleAI : MonoBehaviour
 {
     //Enemy Variables
-    public float health;
     public float sightRange;
     public float attackRange;
     public float speed;
@@ -25,7 +24,6 @@ public class SimpleAI : MonoBehaviour
     Rigidbody2D rb;
 
     //Other Variables
-    //bool playerInRange;
     float playerDistance;
     Vector2 enemyPos;
     Vector2 playerPos;
@@ -102,22 +100,4 @@ public class SimpleAI : MonoBehaviour
 
         walkPointSet = true;
     }
-
-    /*
-    private void CheckAttack()
-    {
-        
-        if (Vector2.Distance(enemyPos, playerPos) <= attackRange)
-        {
-            Vector2 playerDirection = (playerPos - enemyPos).normalized;
-            Vector2 spawnPos = enemyPos + playerDirection * attackRange;
-
-            float angle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
-            Quaternion rotationToPlayer = Quaternion.Euler(0, 0, angle);
-
-            playerDistance = Vector2.Distance(playerPos, enemyPos);
-            Instantiate(attackObject, spawnPos, rotationToPlayer);
-        }
-    }
-    */
 }

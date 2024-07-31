@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 886053700733698674}
   m_Layer: 7
   m_Name: Boss 1 Placeholder
-  m_TagString: Enemy
+  m_TagString: Boss Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91554f037dee6a14f9f536cea7b32492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   sightRange: 10
   attackRange: 8
   speed: 2
@@ -255,6 +254,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 317fd238d1d00497aaa055db22b92368, type: 3}
+      propertyPath: m_bulletPrefab
+      value: 
+      objectReference: {fileID: 5640513357906032314, guid: 7db8a2512ebefb245ad3e08919e844ee, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -357,6 +360,10 @@ PrefabInstance:
       propertyPath: m_bulletNum
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 41fe4688ad349c44ba7788cc285a3ab2, type: 3}
+      propertyPath: m_bulletPrefab
+      value: 
+      objectReference: {fileID: 5640513357906032314, guid: 7db8a2512ebefb245ad3e08919e844ee, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
