@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -34,13 +35,20 @@ public class EnemyHealth : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                if (gameObject.TryGetComponent<UbhShotCtrl>(out UbhShotCtrl shotCtrl))
+                if(gameObject.tag == "Boss Enemy")
                 {
-                    shotCtrl.enabled = false;
+                    SceneManager.LoadScene("WinScreen");
                 }
-                audioSource.clip = deathSFX[Random.Range(0, deathSFX.Length)];
-                audioSource.Play();
-                StartCoroutine(DestroyAfterDeathSound());
+                else
+                {
+                    if (gameObject.TryGetComponent<UbhShotCtrl>(out UbhShotCtrl shotCtrl))
+                    {
+                        shotCtrl.enabled = false;
+                    }
+                    audioSource.clip = deathSFX[Random.Range(0, deathSFX.Length)];
+                    audioSource.Play();
+                    StartCoroutine(DestroyAfterDeathSound());
+                }
             }
         }
     }
