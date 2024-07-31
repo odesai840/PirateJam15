@@ -134,6 +134,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ea046a1-1f7f-4435-a185-5a89168e75ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,6 +189,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Auto Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34a60ec4-8567-4f90-bf05-6f46875835cb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -195,6 +215,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Combat_Dash = m_Combat.FindAction("Dash", throwIfNotFound: true);
         m_Combat_Eclipse = m_Combat.FindAction("Eclipse", throwIfNotFound: true);
         m_Combat_AutoFire = m_Combat.FindAction("Auto Fire", throwIfNotFound: true);
+        m_Combat_Heal = m_Combat.FindAction("Heal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +327,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Combat_Dash;
     private readonly InputAction m_Combat_Eclipse;
     private readonly InputAction m_Combat_AutoFire;
+    private readonly InputAction m_Combat_Heal;
     public struct CombatActions
     {
         private @PlayerControls m_Wrapper;
@@ -314,6 +336,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Combat_Dash;
         public InputAction @Eclipse => m_Wrapper.m_Combat_Eclipse;
         public InputAction @AutoFire => m_Wrapper.m_Combat_AutoFire;
+        public InputAction @Heal => m_Wrapper.m_Combat_Heal;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -335,6 +358,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AutoFire.started += instance.OnAutoFire;
             @AutoFire.performed += instance.OnAutoFire;
             @AutoFire.canceled += instance.OnAutoFire;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
         }
 
         private void UnregisterCallbacks(ICombatActions instance)
@@ -351,6 +377,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AutoFire.started -= instance.OnAutoFire;
             @AutoFire.performed -= instance.OnAutoFire;
             @AutoFire.canceled -= instance.OnAutoFire;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
         }
 
         public void RemoveCallbacks(ICombatActions instance)
@@ -378,5 +407,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnEclipse(InputAction.CallbackContext context);
         void OnAutoFire(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
 }

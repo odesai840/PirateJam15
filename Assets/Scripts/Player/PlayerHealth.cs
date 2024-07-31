@@ -7,33 +7,44 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100f;
     [SerializeField] Slider healthBar;
-    
+
+    private PlayerControls playerControls;
+    private PlayerEclipse playerEclipse;
     private float health;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        playerEclipse = GetComponent<PlayerEclipse>();
         health = maxHealth;
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        health = Mathf.Clamp(health, 0, maxHealth);
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            TakeDamage(Random.Range(5, 10));
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            RestoreHealth(Random.Range(5, 10));
-        }
+        health = Mathf.Clamp(health, 0f, maxHealth);
+        playerControls.Combat.Heal.performed += _ => RestoreHealth();
         UpdateHealthUI();
     }
 
     public void UpdateHealthUI()
     {
-        healthBar.value = (health / maxHealth) * 100;
+        healthBar.value = (health / maxHealth) * 100f;
     }
 
     public void TakeDamage(float damage)
@@ -41,8 +52,9 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
     }
 
-    public void RestoreHealth(float healAmount)
+    public void RestoreHealth()
     {
-        health += healAmount;
+        health += playerEclipse.GetCurrentEclipse() / 2f;
+        playerEclipse.SetCurrentEclipse(0);
     }
 }
