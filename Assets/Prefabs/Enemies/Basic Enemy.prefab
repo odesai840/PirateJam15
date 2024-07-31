@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 983763268100628198}
   - component: {fileID: 1967298095294462028}
   - component: {fileID: 7683238505570622428}
+  - component: {fileID: 7439973131802529792}
   m_Layer: 7
   m_Name: Basic Enemy
   m_TagString: Basic Enemy
@@ -126,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91554f037dee6a14f9f536cea7b32492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   sightRange: 6
   attackRange: 1
   speed: 2
@@ -167,3 +167,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0057689534, y: -0.23076525}
   m_Size: {x: 0.37462062, y: 0.23616031}
   m_Direction: 1
+--- !u!114 &7439973131802529792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188430942545132559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01e8e9e80cfb424da4cddb4dd521984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100

@@ -60,24 +60,56 @@ public class PlayerProjectile : MonoBehaviour
     private void HandleBasicEnemyCollision(GameObject enemy)
     {
         damage += weapon.weaponDamage;
-        Debug.Log("Hit Basic Enemy");
+        if (weapon.canPierceEnemies || weapon.armorPenetration)
+        {
+            damage += weapon.weaponDamage * 0.3f;
+        }
+        enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+        if (!weapon.canPierceEnemies)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void HandleBruteEnemyCollision(GameObject enemy)
     {
         damage += weapon.weaponDamage;
-        Debug.Log("Hit Brute Enemy");
+        if (weapon.armorPenetration)
+        {
+            damage += weapon.weaponDamage * 0.3f;
+        }
+        enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+        if (!weapon.canPierceEnemies)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void HandleFlyingEnemyCollision(GameObject enemy)
     {
         damage += weapon.weaponDamage;
-        Debug.Log("Hit Flying Enemy");
+        if (weapon.canPierceEnemies)
+        {
+            damage += weapon.weaponDamage * 0.3f;
+        }
+        enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+        if (!weapon.canPierceEnemies)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void HandleBossEnemyCollision(GameObject enemy)
     {
         damage += weapon.weaponDamage;
-        Debug.Log("Hit Boss Enemy");
+        if (weapon.weaponName == "Eclipse Bow")
+        {
+            damage += weapon.weaponDamage * 0.3f;
+        }
+        enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+        if (!weapon.canPierceEnemies)
+        {
+            Destroy(gameObject);
+        }
     }
 }
