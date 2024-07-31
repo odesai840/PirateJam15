@@ -18,6 +18,7 @@ MonoBehaviour:
   weaponDamage: 33
   weaponRange: 4
   projectileSpeed: 5
-  attackCooldown: 1
+  attackCooldown: 0.85
   armorPenetration: 1
+  canPierceEnemies: 0
   requiresEclipse: 0
