@@ -279,8 +279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightRange: 6
-  attackRange: 2
-  speed: 2
+  attackRange: 4
+  speed: 4
   patrolRadius: 6
   Player: {fileID: 6677023880136579158, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
 --- !u!70 &2695962272461712507
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01e8e9e80cfb424da4cddb4dd521984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 400
+  maxHealth: 250
   deathSFX:
   - {fileID: 8300000, guid: 07b921e1b4775d8469a5f42bdb2be3f5, type: 3}
   - {fileID: 8300000, guid: cc394803c77bd3a40874b6804fc7a0ab, type: 3}
