@@ -20,14 +20,6 @@ public class PlayerEclipse : MonoBehaviour
     void Update()
     {
         eclipse = Mathf.Clamp(eclipse, 0f, maxEclipse);
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            DrainEclipse(Random.Range(5, 10));
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            GainEclipse(Random.Range(5, 10));
-        }
         UpdateEclipseUI();
     }
 
