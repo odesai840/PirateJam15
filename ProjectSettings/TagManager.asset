@@ -46,3 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sprites
+    uniqueID: 2423951747
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1785555255
+    locked: 0
