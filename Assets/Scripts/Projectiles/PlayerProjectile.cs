@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
+    public PlayerEclipse playerEclipse;
     public PlayerWeapon weapon;
     private Vector3 startPosition;
     private float damage = 0f;
@@ -63,6 +64,17 @@ public class PlayerProjectile : MonoBehaviour
         if (weapon.canPierceEnemies || weapon.armorPenetration)
         {
             damage += weapon.weaponDamage * 0.3f;
+            if(weapon.weaponName != "Eclipse Bow")
+            {
+                playerEclipse.GainEclipse(2);
+            }
+        }
+        else
+        {
+            if (weapon.weaponName != "Eclipse Bow")
+            {
+                playerEclipse.GainEclipse(1);
+            }
         }
         enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
         if (!weapon.canPierceEnemies)
@@ -77,6 +89,17 @@ public class PlayerProjectile : MonoBehaviour
         if (weapon.armorPenetration)
         {
             damage += weapon.weaponDamage * 0.3f;
+            if (weapon.weaponName != "Eclipse Bow")
+            {
+                playerEclipse.GainEclipse(2);
+            }
+        }
+        else
+        {
+            if (weapon.weaponName != "Eclipse Bow")
+            {
+                playerEclipse.GainEclipse(1);
+            }
         }
         enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
         if (!weapon.canPierceEnemies)
@@ -91,6 +114,17 @@ public class PlayerProjectile : MonoBehaviour
         if (weapon.canPierceEnemies)
         {
             damage += weapon.weaponDamage * 0.3f;
+            if (weapon.weaponName != "Eclipse Bow")
+            {
+                playerEclipse.GainEclipse(2);
+            }
+        }
+        else
+        {
+            if (weapon.weaponName != "Eclipse Bow")
+            {
+                playerEclipse.GainEclipse(1);
+            }
         }
         enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
         if (!weapon.canPierceEnemies)
@@ -105,6 +139,10 @@ public class PlayerProjectile : MonoBehaviour
         if (weapon.weaponName == "Eclipse Bow")
         {
             damage += weapon.weaponDamage * 0.3f;
+        }
+        else
+        {
+            playerEclipse.GainEclipse(1);
         }
         enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
         if (!weapon.canPierceEnemies)

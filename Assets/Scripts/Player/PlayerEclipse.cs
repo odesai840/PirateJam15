@@ -28,10 +28,10 @@ public class PlayerEclipse : MonoBehaviour
         {
             GainEclipse(Random.Range(5, 10));
         }
-        UpdateHealthUI();
+        UpdateEclipseUI();
     }
 
-    public void UpdateHealthUI()
+    public void UpdateEclipseUI()
     {
         eclipseBar.value = (eclipse / maxEclipse) * 100f;
     }
