@@ -231,9 +231,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 7000
   deathSFX:
-  - {fileID: 8300000, guid: 07b921e1b4775d8469a5f42bdb2be3f5, type: 3}
-  - {fileID: 8300000, guid: cc394803c77bd3a40874b6804fc7a0ab, type: 3}
-  - {fileID: 8300000, guid: d76cb3f1f948fb849a056ccb65b6c119, type: 3}
+  - {fileID: 8300000, guid: be7126311e77f734d8f9b76bfb961370, type: 3}
+  - {fileID: 8300000, guid: be7126311e77f734d8f9b76bfb961370, type: 3}
+  - {fileID: 8300000, guid: be7126311e77f734d8f9b76bfb961370, type: 3}
 --- !u!82 &8457800914687400814
 AudioSource:
   m_ObjectHideFlags: 0
@@ -244,7 +244,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 07b921e1b4775d8469a5f42bdb2be3f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: be7126311e77f734d8f9b76bfb961370, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

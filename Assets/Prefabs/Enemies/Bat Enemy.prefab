@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 100000, guid: ca4213b81bc2e454288a758cda85c130, type: 3}
   m_bulletNum: 3
-  m_bulletSpeed: 3
+  m_bulletSpeed: 5
   m_accelerationSpeed: 0
   m_useMaxSpeed: 0
   m_maxSpeed: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 100000, guid: ca4213b81bc2e454288a758cda85c130, type: 3}
   m_bulletNum: 15
-  m_bulletSpeed: 3
+  m_bulletSpeed: 4
   m_accelerationSpeed: 0
   m_useMaxSpeed: 0
   m_maxSpeed: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   attackRange: 4
   speed: 4
   patrolRadius: 6
-  Player: {fileID: 6677023880136579158, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
+  Player: {fileID: 0}
 --- !u!70 &2695962272461712507
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f0f29fa90c15e4ca1c2e77ce62f18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6677023880136579158, guid: 5cf58bb8b98a449498b1adcb18d03537, type: 3}
+  player: {fileID: 0}
   m_axisMove: 0
   m_inheritAngle: 0
   m_startOnAwake: 1

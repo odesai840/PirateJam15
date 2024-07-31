@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 100000, guid: ca4213b81bc2e454288a758cda85c130, type: 3}
   m_bulletNum: 30
-  m_bulletSpeed: 3
+  m_bulletSpeed: 4
   m_accelerationSpeed: 0
   m_useMaxSpeed: 0
   m_maxSpeed: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 100000, guid: ca4213b81bc2e454288a758cda85c130, type: 3}
   m_bulletNum: 5
-  m_bulletSpeed: 2
+  m_bulletSpeed: 3
   m_accelerationSpeed: 0
   m_useMaxSpeed: 0
   m_maxSpeed: 0
@@ -352,9 +352,9 @@ MonoBehaviour:
   player: {fileID: 0}
   m_axisMove: 0
   m_inheritAngle: 0
-  m_startOnAwake: 1
+  m_startOnAwake: 0
   m_startOnAwakeDelay: 1
-  m_startOnEnable: 0
+  m_startOnEnable: 1
   m_startOnEnableDelay: 1
   m_loop: 0
   m_atRandom: 0
